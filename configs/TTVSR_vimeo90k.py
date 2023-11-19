@@ -16,7 +16,7 @@ test_cfg = dict(metrics=['PSNR', 'SSIM'], crop_border=0, convert_to='y')
 train_dataset_type = 'SRVimeo90KMultipleGTDataset'
 val_dataset_type = 'SRFolderMultipleGTDataset'
 test_dataset_type = 'SRVimeo90KDataset'
-dataset_root = './'
+dataset_root = '/misc/dl001/dataset/kawai/vid4'
 
 train_pipeline = [
     dict(
@@ -96,17 +96,19 @@ data = dict(
         times=1000,
         dataset=dict(
             type=train_dataset_type,
-            lq_folder=dataset_root+'dataset/vimeo_septuplet/sequences_BD',
-            gt_folder=dataset_root+'dataset/vimeo_septuplet/sequences',
-            ann_file=dataset_root+'dataset/vimeo_septuplet/sep_trainlist.txt',
+            # lq_folder=dataset_root+'vimeo_septuplet/sequences_BD',
+            # gt_folder=dataset_root+'vimeo_septuplet/sequences',
+            lq_folder=dataset_root+'udm10/BD',
+            gt_folder=dataset_root+'udm10/HR',
+            # ann_file=dataset_root+'vimeo_septuplet/sep_trainlist.txt',
             pipeline=train_pipeline,
             scale=4,
             test_mode=False)),
     # # val vid4
     val=dict(
         type=val_dataset_type,
-        lq_folder=dataset_root+'dataset/VID4/BD',
-        gt_folder=dataset_root+'dataset/VID4/HR',
+        lq_folder=dataset_root+'VID4/BD',
+        gt_folder=dataset_root+'VID4/HR',
         pipeline=val_pipeline,
         scale=4,
         test_mode=True),
@@ -114,8 +116,8 @@ data = dict(
     # test
     test=dict(
         type=val_dataset_type,
-        lq_folder=dataset_root+'dataset/VID4/BD',
-        gt_folder=dataset_root+'dataset/VID4/HR',
+        lq_folder=dataset_root+'VID4/BD',
+        gt_folder=dataset_root+'VID4/HR',
         pipeline=val_pipeline,
         scale=4,
         test_mode=True),
